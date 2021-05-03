@@ -1,0 +1,60 @@
+﻿@using Mangau.DevTest.Covid19.Controllers
+@model ReportsFormModel
+
+@{
+    ViewData["Title"] = "Top 10 COVID-19 Cases";
+}
+
+@using (Html.BeginForm("Index", "Home", null, FormMethod.Post))
+{
+<div class="form-group row">
+    <div class="col-md-2">
+        @Html.DropDownListFor(r => r.RegionIso, new SelectList(ViewBag.Regions, "Iso", "Name", Model.RegionIso), "All Regions", new { @class = "form-control" })
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-success fill-width" type="submit">Report</button>
+    </div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-5">
+        <div class="btn-group fill-width" role="group">
+            <button class="btn btn-primary" type="button">XML</button>
+            <button class="btn btn-secondary" type="button">JSON</button>
+            <button class="btn btn-info" type="button">CSV</button>
+        </div>
+    </div>
+</div>
+}
+
+<table class="table table-hover table-striped fill-width">
+    <thead>
+        <tr class="row">
+            <th scope="col" class="col-md-4">
+                Region
+            </th>
+            <th scope="col" class="col-md-4 text-right">
+                Cases
+            </th>
+            <th scope="col" class="col-md-4 text-right">
+                Deaths
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var rs in ViewBag.Statistics)
+        {
+        <tr class="row">
+            <td class="col-md-4">
+                @rs.Region
+            </td>
+            <td class="col-md-4 text-right">
+                @rs.Confirmed.ToString("#,##0")
+            </td>
+            <td class="col-md-4 text-right">
+                @rs.Deaths.ToString("#,##0")
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
