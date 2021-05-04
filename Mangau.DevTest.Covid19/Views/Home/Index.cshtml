@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Top 10 COVID-19 Cases";
+    var prm = new Dictionary<string, string>();
+    prm.Add("regionIso", Model.RegionIso);
 }
 
 @using (Html.BeginForm("Index", "Home", null, FormMethod.Post))
@@ -18,9 +20,9 @@
     </div>
     <div class="col-md-5">
         <div class="btn-group fill-width" role="group">
-            <button class="btn btn-primary" type="button">XML</button>
-            <button class="btn btn-secondary" type="button">JSON</button>
-            <button class="btn btn-info" type="button">CSV</button>
+            @Html.ActionLink("XML", "GetXmlFile", "Home", routeValues: prm, htmlAttributes: new { @class = "btn btn-primary" })
+            @Html.ActionLink("JSON", "GetJsonFile", "Home", routeValues: prm, htmlAttributes: new { @class = "btn btn-secondary" })
+            @Html.ActionLink("CSV", "GetCsvFile", "Home", routeValues: prm, htmlAttributes: new { @class = "btn btn-info" })
         </div>
     </div>
 </div>

@@ -279,3 +279,4 @@ yarn.lock
 **/yarn-error.log
 **/testem.log
 **/typings
+/Mangau.DevTest.Covid19/appsettings.Local.json
