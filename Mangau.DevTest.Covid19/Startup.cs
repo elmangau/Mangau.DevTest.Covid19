@@ -32,7 +32,7 @@ namespace Mangau.DevTest.Covid19
                 c.BaseAddress = new Uri("https://covid-19-statistics.p.rapidapi.com/reports");
                 c.DefaultRequestHeaders.Add("User-Agent", "Mangau DevTest Covid-19");
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
-                c.DefaultRequestHeaders.Add("x-rapidapi-key", "a2eec56fc4mshd78a6d10f5e2cf3p1bb0ffjsna0c9e2ee7cf7");
+                c.DefaultRequestHeaders.Add("x-rapidapi-key", Configuration.GetValue<string>("Covid19:rapidapikey"));
                 c.DefaultRequestHeaders.Add("x-rapidapi-host", "covid-19-statistics.p.rapidapi.com");
             });
 

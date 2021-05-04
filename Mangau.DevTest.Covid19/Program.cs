@@ -20,7 +20,19 @@ namespace Mangau.DevTest.Covid19
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        .UseStartup<Startup>()
+                        .ConfigureAppConfiguration((hostContext, confBuilder) =>
+                        {
+                            var env = hostContext.HostingEnvironment;
+                            var dbEngine = "sqlserver";
+
+                            confBuilder
+                                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                                .AddJsonFile($"appsettings.Local.json", optional: true, reloadOnChange: true)
+                                .AddJsonFile($"appsettings.{env.EnvironmentName}.config", optional: true, reloadOnChange: true)
+                                .AddEnvironmentVariables();
+                        });
                 });
     }
 }

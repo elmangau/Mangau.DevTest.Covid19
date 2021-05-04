@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Mangau.DevTest.Covid19
@@ -33,6 +34,16 @@ namespace Mangau.DevTest.Covid19
             }
 
             return string.Join("&", prms);
+        }
+
+        public static StringBuilder AppendIndent(this StringBuilder stringBuilder, string text = "")
+        {
+            return stringBuilder.Append($"    {text}");
+        }
+
+        public static StringBuilder AppendLineIndent(this StringBuilder stringBuilder, string text = "")
+        {
+            return stringBuilder.AppendLine($"    {text}");
         }
     }
 }
